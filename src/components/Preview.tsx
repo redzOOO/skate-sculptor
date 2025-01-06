@@ -4,7 +4,6 @@ import { Slider } from "@/components/ui/slider";
 import { boots } from "@/lib/data/boots";
 import { frames } from "@/lib/data/frames";
 import { wheels } from "@/lib/data/wheels";
-import { ChevronRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 interface PreviewProps {
@@ -26,15 +25,17 @@ const Preview: React.FC<PreviewProps> = ({
   const selectedWheelData = wheels.find((wheel) => wheel.name === selectedWheels);
 
   const imageSize = showMenu ? "w-48 h-48" : "w-64 h-64";
+  const selectedItemsCount = [selectedBoot, selectedFrame, selectedWheels].filter(Boolean).length;
+  const previewHeight = `${Math.max(500, 400 + selectedItemsCount * 50)}px`;
 
   return (
-    <Card className={`w-full h-[600px] bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-xl p-6 animate-fadeIn overflow-hidden transition-all duration-300 ${!showMenu ? 'lg:w-[150%]' : ''}`}>
+    <Card className={`w-full bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-xl p-6 animate-fadeIn overflow-hidden transition-all duration-300 ${!showMenu ? 'lg:w-[150%]' : ''}`} style={{ height: previewHeight }}>
       <div className="w-full h-full flex flex-col items-center justify-between">
         <div className="w-full bg-gradient-to-r from-primary/90 to-accent/90 rounded-lg p-4 mb-6 shadow-lg backdrop-blur-sm">
           <h1 className="text-4xl font-bold text-white text-center tracking-wider">Forge Your Blades!</h1>
         </div>
         
-        <div className="flex-1 flex flex-col items-center justify-center space-y-2 relative">
+        <div className="flex-1 flex flex-col items-center justify-center space-y-2 relative min-h-[300px]">
           <div className="relative flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
             {selectedBootData && (
               <div className="relative z-10">
