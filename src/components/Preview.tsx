@@ -30,35 +30,37 @@ const Preview: React.FC<PreviewProps> = ({
         <h2 className="text-2xl font-bold">Preview Area</h2>
         
         <div className="flex-1 flex flex-col items-center justify-center space-y-2 relative">
-          {selectedBootData && (
-            <div className="relative">
-              <img 
-                src={selectedBootData.imageUrl} 
-                alt={selectedBootData.name}
-                className="w-48 h-48 object-contain"
-              />
-            </div>
-          )}
-          
-          {selectedFrameData && (
-            <div className="relative -mt-24">
-              <img 
-                src={selectedFrameData.imageUrl} 
-                alt={selectedFrameData.name}
-                className="w-48 h-48 object-contain"
-              />
-            </div>
-          )}
-          
-          {selectedWheelData && (
-            <div className="relative">
-              <img 
-                src={selectedWheelData.imageUrl} 
-                alt={selectedWheelData.name}
-                className="w-48 h-48 object-contain"
-              />
-            </div>
-          )}
+          <div className="relative flex flex-col items-center">
+            {selectedBootData && (
+              <div className="relative z-10">
+                <img 
+                  src={selectedBootData.imageUrl} 
+                  alt={selectedBootData.name}
+                  className="w-48 h-48 object-contain"
+                />
+              </div>
+            )}
+            
+            {selectedFrameData && (
+              <div className="relative -mt-32 z-0">
+                <img 
+                  src={selectedFrameData.imageUrl} 
+                  alt={selectedFrameData.name}
+                  className="w-48 h-48 object-contain"
+                />
+              </div>
+            )}
+            
+            {selectedWheelData && (
+              <div className="relative">
+                <img 
+                  src={selectedWheelData.imageUrl} 
+                  alt={selectedWheelData.name}
+                  className="w-48 h-48 object-contain"
+                />
+              </div>
+            )}
+          </div>
           
           {!selectedBootData && !selectedFrameData && !selectedWheelData && (
             <p className="text-gray-500">Select items to preview</p>
