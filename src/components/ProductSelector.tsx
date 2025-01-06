@@ -3,7 +3,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import { boots, frames, wheels } from "@/lib/types";
+import { boots } from "@/lib/data/boots";
+import { frames } from "@/lib/data/frames";
+import { wheels } from "@/lib/data/wheels";
 
 interface ProductSelectorProps {
   onSelectBoot: (boot: string) => void;
