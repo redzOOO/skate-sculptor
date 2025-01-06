@@ -19,6 +19,11 @@ const Preview: React.FC<PreviewProps> = ({
   const selectedFrameData = frames.find((frame) => frame.name === selectedFrame);
   const selectedWheelData = wheels.find((wheel) => wheel.name === selectedWheels);
 
+  // Convert price from USD to GBP (using approximate conversion rate)
+  const convertToGBP = (price: number) => {
+    return (price * 0.79).toFixed(2); // Approximate conversion rate
+  };
+
   return (
     <Card className="w-full h-[600px] bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 animate-fadeIn">
       <div className="w-full h-full flex flex-col items-center justify-between">
@@ -36,7 +41,7 @@ const Preview: React.FC<PreviewProps> = ({
           )}
           
           {selectedFrameData && (
-            <div className="relative -mt-16">
+            <div className="relative -mt-24">
               <img 
                 src={selectedFrameData.imageUrl} 
                 alt={selectedFrameData.name}
@@ -62,13 +67,13 @@ const Preview: React.FC<PreviewProps> = ({
 
         <div className="w-full space-y-2 text-center mt-4">
           {selectedBootData && (
-            <p className="text-gray-500">{selectedBootData.name} - ${selectedBootData.price}</p>
+            <p className="text-gray-500">{selectedBootData.name} - £{convertToGBP(selectedBootData.price)}</p>
           )}
           {selectedFrameData && (
-            <p className="text-gray-500">{selectedFrameData.name} - ${selectedFrameData.price}</p>
+            <p className="text-gray-500">{selectedFrameData.name} - £{convertToGBP(selectedFrameData.price)}</p>
           )}
           {selectedWheelData && (
-            <p className="text-gray-500">{selectedWheelData.name} - ${selectedWheelData.price}</p>
+            <p className="text-gray-500">{selectedWheelData.name} - £{convertToGBP(selectedWheelData.price)}</p>
           )}
         </div>
       </div>

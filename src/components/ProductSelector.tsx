@@ -20,6 +20,11 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
 }) => {
   const [priceRange, setPriceRange] = React.useState([0, 500]);
 
+  // Convert price from USD to GBP (using approximate conversion rate)
+  const convertToGBP = (price: number) => {
+    return (price * 0.79).toFixed(2); // Approximate conversion rate
+  };
+
   const ProductCard = ({ product }: { product: any }) => (
     <Card className="p-4 hover:shadow-lg transition-shadow cursor-pointer">
       <img
@@ -29,7 +34,7 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
       />
       <h3 className="font-bold">{product.name}</h3>
       <p className="text-sm text-gray-500">{product.brand}</p>
-      <p className="font-bold text-primary mt-2">${product.price}</p>
+      <p className="font-bold text-primary mt-2">£{convertToGBP(product.price)}</p>
     </Card>
   );
 
@@ -43,7 +48,7 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
         </TabsList>
 
         <div className="mb-6">
-          <Label>Price Range: ${priceRange[0]} - ${priceRange[1]}</Label>
+          <Label>Price Range: £{convertToGBP(priceRange[0])} - £{convertToGBP(priceRange[1])}</Label>
           <Slider
             defaultValue={[0, 500]}
             max={500}
