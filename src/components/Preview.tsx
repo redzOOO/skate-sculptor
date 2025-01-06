@@ -52,7 +52,7 @@ const Preview: React.FC<PreviewProps> = ({
             )}
             
             {selectedWheelData && (
-              <div className="relative -mt-8">
+              <div className="relative -mt-5">
                 <img 
                   src={selectedWheelData.imageUrl} 
                   alt={selectedWheelData.name}
