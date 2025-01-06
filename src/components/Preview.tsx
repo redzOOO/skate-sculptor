@@ -24,11 +24,6 @@ const Preview: React.FC<PreviewProps> = ({
   const selectedFrameData = frames.find((frame) => frame.name === selectedFrame);
   const selectedWheelData = wheels.find((wheel) => wheel.name === selectedWheels);
 
-  // Convert price from USD to GBP (using approximate conversion rate)
-  const convertToGBP = (price: number) => {
-    return (price * 0.79).toFixed(2);
-  };
-
   const imageSize = showMenu ? "w-48 h-48" : "w-64 h-64";
 
   return (
@@ -92,13 +87,13 @@ const Preview: React.FC<PreviewProps> = ({
 
         <div className="w-full space-y-2 text-center mt-4">
           {selectedBootData && (
-            <p className="text-gray-500">{selectedBootData.name} - £{convertToGBP(selectedBootData.price)}</p>
+            <p className="text-gray-500">{selectedBootData.name}</p>
           )}
           {selectedFrameData && (
-            <p className="text-gray-500">{selectedFrameData.name} - £{convertToGBP(selectedFrameData.price)}</p>
+            <p className="text-gray-500">{selectedFrameData.name}</p>
           )}
           {selectedWheelData && (
-            <p className="text-gray-500">{selectedWheelData.name} - £{convertToGBP(selectedWheelData.price)}</p>
+            <p className="text-gray-500">{selectedWheelData.name}</p>
           )}
         </div>
       </div>
