@@ -6,6 +6,7 @@ const Index = () => {
   const [selectedBoot, setSelectedBoot] = useState<string | null>(null);
   const [selectedFrame, setSelectedFrame] = useState<string | null>(null);
   const [selectedWheels, setSelectedWheels] = useState<string | null>(null);
+  const [showMenu, setShowMenu] = useState(true);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6 lg:px-8">
@@ -14,16 +15,22 @@ const Index = () => {
           BladeForge
         </h1>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative">
           <div className="w-full">
             <Preview
               selectedBoot={selectedBoot}
               selectedFrame={selectedFrame}
               selectedWheels={selectedWheels}
             />
+            <button
+              onClick={() => setShowMenu(!showMenu)}
+              className="mt-4 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-hover transition-colors"
+            >
+              {showMenu ? 'Hide Menu' : 'Show Menu'}
+            </button>
           </div>
           
-          <div className="w-full">
+          <div className={`w-full transition-all duration-300 ${showMenu ? 'block' : 'hidden'}`}>
             <ProductSelector
               onSelectBoot={setSelectedBoot}
               onSelectFrame={setSelectedFrame}

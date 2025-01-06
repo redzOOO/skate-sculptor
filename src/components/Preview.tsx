@@ -27,7 +27,7 @@ const Preview: React.FC<PreviewProps> = ({
   };
 
   return (
-    <Card className="w-full h-[600px] bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 animate-fadeIn">
+    <Card className="w-full h-[600px] bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 animate-fadeIn overflow-hidden">
       <div className="w-full h-full flex flex-col items-center justify-between">
         <div className="w-full bg-primary rounded-lg p-4 mb-6">
           <h1 className="text-4xl font-bold text-white text-center">Forge Your Blades!</h1>
@@ -77,7 +77,7 @@ const Preview: React.FC<PreviewProps> = ({
             <Slider
               value={spacing}
               onValueChange={setSpacing}
-              min={-50}
+              min={-100}
               max={0}
               step={1}
               className="w-full"
