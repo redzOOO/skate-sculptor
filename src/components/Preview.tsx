@@ -42,7 +42,7 @@ const Preview: React.FC<PreviewProps> = ({
             )}
             
             {selectedFrameData && (
-              <div className="relative -mt-32 z-0">
+              <div className="relative -mt-18 z-0">
                 <img 
                   src={selectedFrameData.imageUrl} 
                   alt={selectedFrameData.name}
