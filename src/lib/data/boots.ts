@@ -16,7 +16,7 @@ export const boots: SkateOption[] = [
     name: "Tactical V1 Midnight White",
     description: "Boot Only",
     price: 429.95,
-    imageUrl: "https://res.cloudinary.com/dl2peuqua/image/upload/v1735843523/faction-white-boot-only0796.png",
+    imageUrl: "https://res.cloudinary.com/dl2peuqua/image/upload/v1735843523/Faction-Tactical-V1-Midnight-Skates---White--Boot-only_lq53a2.png",
     colors: [{ name: "White", hex: "#FFFFFF" }]
   },
   {
@@ -25,7 +25,7 @@ export const boots: SkateOption[] = [
     name: "Tactical V1 Midnight Black",
     description: "Boot Only",
     price: 429.95,
-    imageUrl: "https://res.cloudinary.com/dl2peuqua/image/upload/v1735843523/faction-black-boot-only0800.png",
+    imageUrl: "https://res.cloudinary.com/dl2peuqua/image/upload/v1735843523/Faction-Tactical-V1-Midnight-Skates---Black--Boot-only_ogjuw1.png",
     colors: [{ name: "Black", hex: "#000000" }]
   },
   {
