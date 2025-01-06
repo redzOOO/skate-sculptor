@@ -18,18 +18,55 @@ interface ProductSelectorProps {
   onSelectWheels: (wheels: string) => void;
 }
 
+// Replace this object with your CSV data
 const mockProducts = {
   boots: [
-    { id: "b1", name: "Speed Pro", brand: "RollerBlade", price: 299, image: "/placeholder.svg" },
-    { id: "b2", name: "Urban Flow", brand: "FR Skates", price: 259, image: "/placeholder.svg" },
+    { 
+      id: "b1", 
+      name: "Speed Pro", 
+      brand: "RollerBlade", 
+      price: 299, 
+      image: "your-boot-image-url-1.jpg"  // Replace with your image URL
+    },
+    { 
+      id: "b2", 
+      name: "Urban Flow", 
+      brand: "FR Skates", 
+      price: 259, 
+      image: "your-boot-image-url-2.jpg"  // Replace with your image URL
+    },
   ],
   frames: [
-    { id: "f1", name: "Trinity 3x110", brand: "Powerslide", price: 149, image: "/placeholder.svg" },
-    { id: "f2", name: "Next Frame", brand: "FR Skates", price: 129, image: "/placeholder.svg" },
+    { 
+      id: "f1", 
+      name: "Trinity 3x110", 
+      brand: "Powerslide", 
+      price: 149, 
+      image: "your-frame-image-url-1.jpg"  // Replace with your image URL
+    },
+    { 
+      id: "f2", 
+      name: "Next Frame", 
+      brand: "FR Skates", 
+      price: 129, 
+      image: "your-frame-image-url-2.jpg"  // Replace with your image URL
+    },
   ],
   wheels: [
-    { id: "w1", name: "Hydrogen 110mm", brand: "RollerBlade", price: 89, image: "/placeholder.svg" },
-    { id: "w2", name: "Supreme 110mm", brand: "Powerslide", price: 79, image: "/placeholder.svg" },
+    { 
+      id: "w1", 
+      name: "Hydrogen 110mm", 
+      brand: "RollerBlade", 
+      price: 89, 
+      image: "your-wheel-image-url-1.jpg"  // Replace with your image URL
+    },
+    { 
+      id: "w2", 
+      name: "Supreme 110mm", 
+      brand: "Powerslide", 
+      price: 79, 
+      image: "your-wheel-image-url-2.jpg"  // Replace with your image URL
+    },
   ],
 };
 
