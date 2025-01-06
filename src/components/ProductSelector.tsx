@@ -3,72 +3,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-
-interface Product {
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-  image: string;
-}
+import { boots, frames, wheels } from "@/lib/types";
 
 interface ProductSelectorProps {
   onSelectBoot: (boot: string) => void;
   onSelectFrame: (frame: string) => void;
   onSelectWheels: (wheels: string) => void;
 }
-
-// Replace this object with your CSV data
-const mockProducts = {
-  boots: [
-    { 
-      id: "b1", 
-      name: "Speed Pro", 
-      brand: "RollerBlade", 
-      price: 299, 
-      image: "your-boot-image-url-1.jpg"  // Replace with your image URL
-    },
-    { 
-      id: "b2", 
-      name: "Urban Flow", 
-      brand: "FR Skates", 
-      price: 259, 
-      image: "your-boot-image-url-2.jpg"  // Replace with your image URL
-    },
-  ],
-  frames: [
-    { 
-      id: "f1", 
-      name: "Trinity 3x110", 
-      brand: "Powerslide", 
-      price: 149, 
-      image: "your-frame-image-url-1.jpg"  // Replace with your image URL
-    },
-    { 
-      id: "f2", 
-      name: "Next Frame", 
-      brand: "FR Skates", 
-      price: 129, 
-      image: "your-frame-image-url-2.jpg"  // Replace with your image URL
-    },
-  ],
-  wheels: [
-    { 
-      id: "w1", 
-      name: "Hydrogen 110mm", 
-      brand: "RollerBlade", 
-      price: 89, 
-      image: "your-wheel-image-url-1.jpg"  // Replace with your image URL
-    },
-    { 
-      id: "w2", 
-      name: "Supreme 110mm", 
-      brand: "Powerslide", 
-      price: 79, 
-      image: "your-wheel-image-url-2.jpg"  // Replace with your image URL
-    },
-  ],
-};
 
 const ProductSelector: React.FC<ProductSelectorProps> = ({
   onSelectBoot,
@@ -77,10 +18,10 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
 }) => {
   const [priceRange, setPriceRange] = React.useState([0, 500]);
 
-  const ProductCard = ({ product }: { product: Product }) => (
+  const ProductCard = ({ product }: { product: any }) => (
     <Card className="p-4 hover:shadow-lg transition-shadow cursor-pointer">
       <img
-        src={product.image}
+        src={product.imageUrl}
         alt={product.name}
         className="w-full h-40 object-cover mb-4 rounded"
       />
@@ -112,7 +53,7 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
         </div>
 
         <TabsContent value="boots" className="grid grid-cols-2 gap-4">
-          {mockProducts.boots
+          {boots
             .filter((p) => p.price >= priceRange[0] && p.price <= priceRange[1])
             .map((boot) => (
               <div key={boot.id} onClick={() => onSelectBoot(boot.name)}>
@@ -122,7 +63,7 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
         </TabsContent>
 
         <TabsContent value="frames" className="grid grid-cols-2 gap-4">
-          {mockProducts.frames
+          {frames
             .filter((p) => p.price >= priceRange[0] && p.price <= priceRange[1])
             .map((frame) => (
               <div key={frame.id} onClick={() => onSelectFrame(frame.name)}>
@@ -132,7 +73,7 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
         </TabsContent>
 
         <TabsContent value="wheels" className="grid grid-cols-2 gap-4">
-          {mockProducts.wheels
+          {wheels
             .filter((p) => p.price >= priceRange[0] && p.price <= priceRange[1])
             .map((wheel) => (
               <div key={wheel.id} onClick={() => onSelectWheels(wheel.name)}>
