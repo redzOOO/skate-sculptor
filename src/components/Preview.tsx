@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
+import { Slider } from "@/components/ui/slider";
 import { boots } from "@/lib/data/boots";
 import { frames } from "@/lib/data/frames";
 import { wheels } from "@/lib/data/wheels";
@@ -15,6 +16,7 @@ const Preview: React.FC<PreviewProps> = ({
   selectedFrame,
   selectedWheels,
 }) => {
+  const [spacing, setSpacing] = useState([-20]);
   const selectedBootData = boots.find((boot) => boot.name === selectedBoot);
   const selectedFrameData = frames.find((frame) => frame.name === selectedFrame);
   const selectedWheelData = wheels.find((wheel) => wheel.name === selectedWheels);
@@ -27,7 +29,9 @@ const Preview: React.FC<PreviewProps> = ({
   return (
     <Card className="w-full h-[600px] bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 animate-fadeIn">
       <div className="w-full h-full flex flex-col items-center justify-between">
-        <h1 className="text-4xl font-bold text-primary mb-6">Forge Your Blades!</h1>
+        <div className="w-full bg-primary rounded-lg p-4 mb-6">
+          <h1 className="text-4xl font-bold text-white text-center">Forge Your Blades!</h1>
+        </div>
         
         <div className="flex-1 flex flex-col items-center justify-center space-y-2 relative">
           <div className="relative flex flex-col items-center">
@@ -42,7 +46,7 @@ const Preview: React.FC<PreviewProps> = ({
             )}
             
             {selectedFrameData && (
-              <div className="relative -mt-20 z-0">
+              <div className="relative z-0" style={{ marginTop: `${spacing[0]}px` }}>
                 <img 
                   src={selectedFrameData.imageUrl} 
                   alt={selectedFrameData.name}
@@ -66,6 +70,20 @@ const Preview: React.FC<PreviewProps> = ({
             <p className="text-gray-500">Select items to preview</p>
           )}
         </div>
+
+        {selectedBootData && selectedFrameData && (
+          <div className="w-full max-w-xs mb-4">
+            <label className="text-sm text-gray-500 mb-2 block">Adjust Boot-Frame Spacing</label>
+            <Slider
+              value={spacing}
+              onValueChange={setSpacing}
+              min={-50}
+              max={0}
+              step={1}
+              className="w-full"
+            />
+          </div>
+        )}
 
         <div className="w-full space-y-2 text-center mt-4">
           {selectedBootData && (
