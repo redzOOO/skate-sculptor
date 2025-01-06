@@ -4,7 +4,7 @@ import { Slider } from "@/components/ui/slider";
 import { boots } from "@/lib/data/boots";
 import { frames } from "@/lib/data/frames";
 import { wheels } from "@/lib/data/wheels";
-import { ChevronRight } from "lucide-react";
+import { Label } from "@/components/ui/label";
 
 interface PreviewProps {
   selectedBoot: string | null;
@@ -20,11 +20,21 @@ const Preview: React.FC<PreviewProps> = ({
   showMenu,
 }) => {
   const [spacing, setSpacing] = useState([-20]);
+  const [bootSize, setBootSize] = useState([100]);
+  const [frameSize, setFrameSize] = useState([100]);
+  const [wheelSize, setWheelSize] = useState([100]);
+  
   const selectedBootData = boots.find((boot) => boot.name === selectedBoot);
   const selectedFrameData = frames.find((frame) => frame.name === selectedFrame);
   const selectedWheelData = wheels.find((wheel) => wheel.name === selectedWheels);
 
-  const imageSize = showMenu ? "w-48 h-48" : "w-64 h-64";
+  const baseImageSize = showMenu ? "w-48 h-48" : "w-64 h-64";
+
+  const getScaledSize = (baseSize: string, scale: number) => {
+    const size = parseInt(baseSize.replace(/\D/g, ''));
+    const scaledSize = (size * scale / 100).toString();
+    return baseSize.replace(/\d+/g, scaledSize);
+  };
 
   return (
     <Card className={`w-full h-[600px] bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 animate-fadeIn overflow-hidden transition-all duration-300 ${!showMenu ? 'lg:w-[150%]' : ''}`}>
@@ -40,7 +50,7 @@ const Preview: React.FC<PreviewProps> = ({
                 <img 
                   src={selectedBootData.imageUrl} 
                   alt={selectedBootData.name}
-                  className={`${imageSize} object-contain transition-all duration-300`}
+                  className={`${getScaledSize(baseImageSize, bootSize[0])} object-contain transition-all duration-300`}
                 />
               </div>
             )}
@@ -50,7 +60,7 @@ const Preview: React.FC<PreviewProps> = ({
                 <img 
                   src={selectedFrameData.imageUrl} 
                   alt={selectedFrameData.name}
-                  className={`${imageSize} object-contain transition-all duration-300`}
+                  className={`${getScaledSize(baseImageSize, frameSize[0])} object-contain transition-all duration-300`}
                 />
               </div>
             )}
@@ -60,7 +70,7 @@ const Preview: React.FC<PreviewProps> = ({
                 <img 
                   src={selectedWheelData.imageUrl} 
                   alt={selectedWheelData.name}
-                  className={`${imageSize} object-contain transition-all duration-300`}
+                  className={`${getScaledSize(baseImageSize, wheelSize[0])} object-contain transition-all duration-300`}
                 />
               </div>
             )}
@@ -71,19 +81,63 @@ const Preview: React.FC<PreviewProps> = ({
           )}
         </div>
 
-        {selectedBootData && selectedFrameData && (
-          <div className="w-full max-w-xs mb-4">
-            <label className="text-sm text-gray-500 mb-2 block">Adjust Boot-Frame Spacing</label>
-            <Slider
-              value={spacing}
-              onValueChange={setSpacing}
-              min={-150}
-              max={-10}
-              step={1}
-              className="w-full"
-            />
-          </div>
-        )}
+        <div className="w-full max-w-xs space-y-4 mb-4">
+          {selectedBootData && selectedFrameData && (
+            <div>
+              <Label className="text-sm text-gray-500 mb-2 block">Boot-Frame Spacing</Label>
+              <Slider
+                value={spacing}
+                onValueChange={setSpacing}
+                min={-150}
+                max={-10}
+                step={1}
+                className="w-full"
+              />
+            </div>
+          )}
+
+          {selectedBootData && (
+            <div>
+              <Label className="text-sm text-gray-500 mb-2 block">Boot Size</Label>
+              <Slider
+                value={bootSize}
+                onValueChange={setBootSize}
+                min={50}
+                max={150}
+                step={1}
+                className="w-full"
+              />
+            </div>
+          )}
+
+          {selectedFrameData && (
+            <div>
+              <Label className="text-sm text-gray-500 mb-2 block">Frame Size</Label>
+              <Slider
+                value={frameSize}
+                onValueChange={setFrameSize}
+                min={50}
+                max={150}
+                step={1}
+                className="w-full"
+              />
+            </div>
+          )}
+
+          {selectedWheelData && (
+            <div>
+              <Label className="text-sm text-gray-500 mb-2 block">Wheel Size</Label>
+              <Slider
+                value={wheelSize}
+                onValueChange={setWheelSize}
+                min={50}
+                max={150}
+                step={1}
+                className="w-full"
+              />
+            </div>
+          )}
+        </div>
 
         <div className="w-full space-y-2 text-center mt-4">
           {selectedBootData && (
