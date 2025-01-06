@@ -21,47 +21,54 @@ const Preview: React.FC<PreviewProps> = ({
 
   return (
     <Card className="w-full h-[600px] bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 animate-fadeIn">
-      <div className="w-full h-full flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <h2 className="text-2xl font-bold mb-4">Preview Area</h2>
-          
-          {selectedBootData ? (
-            <div className="space-y-2">
+      <div className="w-full h-full flex flex-col items-center justify-between">
+        <h2 className="text-2xl font-bold">Preview Area</h2>
+        
+        <div className="flex-1 flex flex-col items-center justify-center space-y-2 relative">
+          {selectedBootData && (
+            <div className="relative">
               <img 
                 src={selectedBootData.imageUrl} 
                 alt={selectedBootData.name}
-                className="w-48 h-48 object-contain mx-auto"
+                className="w-48 h-48 object-contain"
               />
-              <p className="text-gray-500">{selectedBootData.name} - ${selectedBootData.price}</p>
             </div>
-          ) : (
-            <p className="text-gray-500">Select a boot to begin</p>
           )}
-
-          {selectedFrameData ? (
-            <div className="space-y-2">
+          
+          {selectedFrameData && (
+            <div className="relative -mt-16">
               <img 
                 src={selectedFrameData.imageUrl} 
                 alt={selectedFrameData.name}
-                className="w-48 h-48 object-contain mx-auto"
+                className="w-48 h-48 object-contain"
               />
-              <p className="text-gray-500">{selectedFrameData.name} - ${selectedFrameData.price}</p>
             </div>
-          ) : (
-            <p className="text-gray-500">No frame selected</p>
           )}
-
-          {selectedWheelData ? (
-            <div className="space-y-2">
+          
+          {selectedWheelData && (
+            <div className="relative">
               <img 
                 src={selectedWheelData.imageUrl} 
                 alt={selectedWheelData.name}
-                className="w-48 h-48 object-contain mx-auto"
+                className="w-48 h-48 object-contain"
               />
-              <p className="text-gray-500">{selectedWheelData.name} - ${selectedWheelData.price}</p>
             </div>
-          ) : (
-            <p className="text-gray-500">No wheels selected</p>
+          )}
+          
+          {!selectedBootData && !selectedFrameData && !selectedWheelData && (
+            <p className="text-gray-500">Select items to preview</p>
+          )}
+        </div>
+
+        <div className="w-full space-y-2 text-center mt-4">
+          {selectedBootData && (
+            <p className="text-gray-500">{selectedBootData.name} - ${selectedBootData.price}</p>
+          )}
+          {selectedFrameData && (
+            <p className="text-gray-500">{selectedFrameData.name} - ${selectedFrameData.price}</p>
+          )}
+          {selectedWheelData && (
+            <p className="text-gray-500">{selectedWheelData.name} - ${selectedWheelData.price}</p>
           )}
         </div>
       </div>
