@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Preview from "@/components/Preview";
 import ProductSelector from "@/components/ProductSelector";
+import { ChevronRight } from "lucide-react";
 
 const Index = () => {
   const [selectedBoot, setSelectedBoot] = useState<string | null>(null);
@@ -21,16 +22,17 @@ const Index = () => {
               selectedBoot={selectedBoot}
               selectedFrame={selectedFrame}
               selectedWheels={selectedWheels}
+              showMenu={showMenu}
             />
             <button
               onClick={() => setShowMenu(!showMenu)}
-              className="mt-4 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-hover transition-colors"
+              className="absolute top-1/2 -right-3 z-10 p-2 bg-primary hover:bg-primary-hover text-white rounded-full shadow-lg transform -translate-y-1/2 transition-transform hover:scale-110"
             >
-              {showMenu ? 'Hide Menu' : 'Show Menu'}
+              <ChevronRight className={`w-4 h-4 transition-transform ${showMenu ? '' : 'rotate-180'}`} />
             </button>
           </div>
           
-          <div className={`w-full transition-all duration-300 ${showMenu ? 'block' : 'hidden'}`}>
+          <div className={`w-full transition-all duration-300 ${showMenu ? 'opacity-100 visible' : 'opacity-0 invisible lg:hidden'}`}>
             <ProductSelector
               onSelectBoot={setSelectedBoot}
               onSelectFrame={setSelectedFrame}

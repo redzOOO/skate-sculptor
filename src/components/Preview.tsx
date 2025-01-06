@@ -4,17 +4,20 @@ import { Slider } from "@/components/ui/slider";
 import { boots } from "@/lib/data/boots";
 import { frames } from "@/lib/data/frames";
 import { wheels } from "@/lib/data/wheels";
+import { ChevronRight } from "lucide-react";
 
 interface PreviewProps {
   selectedBoot: string | null;
   selectedFrame: string | null;
   selectedWheels: string | null;
+  showMenu: boolean;
 }
 
 const Preview: React.FC<PreviewProps> = ({
   selectedBoot,
   selectedFrame,
   selectedWheels,
+  showMenu,
 }) => {
   const [spacing, setSpacing] = useState([-20]);
   const selectedBootData = boots.find((boot) => boot.name === selectedBoot);
@@ -23,14 +26,16 @@ const Preview: React.FC<PreviewProps> = ({
 
   // Convert price from USD to GBP (using approximate conversion rate)
   const convertToGBP = (price: number) => {
-    return (price * 0.79).toFixed(2); // Approximate conversion rate
+    return (price * 0.79).toFixed(2);
   };
 
+  const imageSize = showMenu ? "w-48 h-48" : "w-64 h-64";
+
   return (
-    <Card className="w-full h-[600px] bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 animate-fadeIn overflow-hidden">
+    <Card className={`w-full h-[600px] bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 animate-fadeIn overflow-hidden transition-all duration-300 ${!showMenu ? 'lg:w-[150%]' : ''}`}>
       <div className="w-full h-full flex flex-col items-center justify-between">
-        <div className="w-full bg-primary rounded-lg p-4 mb-6">
-          <h1 className="text-4xl font-bold text-white text-center">Forge Your Blades!</h1>
+        <div className="w-full bg-gradient-to-r from-primary to-accent rounded-lg p-3 mb-6 shadow-md">
+          <h1 className="text-4xl font-bold text-white text-center tracking-wider">Forge Your Blades!</h1>
         </div>
         
         <div className="flex-1 flex flex-col items-center justify-center space-y-2 relative">
@@ -40,7 +45,7 @@ const Preview: React.FC<PreviewProps> = ({
                 <img 
                   src={selectedBootData.imageUrl} 
                   alt={selectedBootData.name}
-                  className="w-48 h-48 object-contain"
+                  className={`${imageSize} object-contain transition-all duration-300`}
                 />
               </div>
             )}
@@ -50,7 +55,7 @@ const Preview: React.FC<PreviewProps> = ({
                 <img 
                   src={selectedFrameData.imageUrl} 
                   alt={selectedFrameData.name}
-                  className="w-48 h-48 object-contain"
+                  className={`${imageSize} object-contain transition-all duration-300`}
                 />
               </div>
             )}
@@ -60,7 +65,7 @@ const Preview: React.FC<PreviewProps> = ({
                 <img 
                   src={selectedWheelData.imageUrl} 
                   alt={selectedWheelData.name}
-                  className="w-48 h-48 object-contain"
+                  className={`${imageSize} object-contain transition-all duration-300`}
                 />
               </div>
             )}
@@ -77,8 +82,8 @@ const Preview: React.FC<PreviewProps> = ({
             <Slider
               value={spacing}
               onValueChange={setSpacing}
-              min={-100}
-              max={0}
+              min={-150}
+              max={-10}
               step={1}
               className="w-full"
             />
