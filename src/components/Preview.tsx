@@ -27,7 +27,7 @@ const Preview: React.FC<PreviewProps> = ({
   return (
     <Card className="w-full h-[600px] bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 animate-fadeIn">
       <div className="w-full h-full flex flex-col items-center justify-between">
-        <h2 className="text-2xl font-bold">Preview Area</h2>
+        <h2 className="text-3xl font-bold text-primary mb-6">Your Forged Blades!</h2>
         
         <div className="flex-1 flex flex-col items-center justify-center space-y-2 relative">
           <div className="relative flex flex-col items-center">
@@ -42,7 +42,7 @@ const Preview: React.FC<PreviewProps> = ({
             )}
             
             {selectedFrameData && (
-              <div className="relative -mt-16 z-0">
+              <div className="relative -mt-24 z-0">
                 <img 
                   src={selectedFrameData.imageUrl} 
                   alt={selectedFrameData.name}
