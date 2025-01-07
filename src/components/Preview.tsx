@@ -5,6 +5,9 @@ import { boots } from "@/lib/data/boots";
 import { frames } from "@/lib/data/frames";
 import { wheels } from "@/lib/data/wheels";
 import { Separator } from "@/components/ui/separator";
+import PreviewHeader from "./preview/PreviewHeader";
+import PreviewDisplay from "./preview/PreviewDisplay";
+import SelectedSetup from "./preview/SelectedSetup";
 
 interface PreviewProps {
   selectedBoot: string | null;
@@ -29,49 +32,20 @@ const Preview: React.FC<PreviewProps> = ({
   const previewHeight = `${Math.max(500, 400 + selectedItemsCount * 50)}px`;
 
   return (
-    <Card className={`w-full bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-xl p-6 animate-fadeIn overflow-hidden transition-all duration-300 ${!showMenu ? 'lg:w-[150%]' : ''}`} style={{ height: previewHeight }}>
+    <Card 
+      className={`w-full bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-xl p-6 animate-fadeIn overflow-hidden transition-all duration-300 ${!showMenu ? 'lg:w-[150%]' : ''}`} 
+      style={{ height: previewHeight }}
+    >
       <div className="w-full h-full flex flex-col items-center justify-between">
-        <div className="w-full bg-gradient-to-r from-primary/90 to-accent/90 rounded-lg p-4 mb-6 shadow-lg backdrop-blur-sm">
-          <h1 className="text-4xl font-bold text-white text-center tracking-wider">Forge Your Blades!</h1>
-        </div>
+        <PreviewHeader />
         
-        <div className="flex-1 flex flex-col items-center justify-center space-y-2 relative min-h-[300px]">
-          <div className="relative flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
-            {selectedBootData && (
-              <div className="relative z-10">
-                <img 
-                  src={selectedBootData.imageUrl} 
-                  alt={selectedBootData.name}
-                  className={`${imageSize} object-contain transition-all duration-300 hover:drop-shadow-xl`}
-                />
-              </div>
-            )}
-            
-            {selectedFrameData && (
-              <div className="relative z-0" style={{ marginTop: `${spacing[0]}px` }}>
-                <img 
-                  src={selectedFrameData.imageUrl} 
-                  alt={selectedFrameData.name}
-                  className={`${imageSize} object-contain transition-all duration-300 hover:drop-shadow-xl`}
-                />
-              </div>
-            )}
-            
-            {selectedWheelData && (
-              <div className="relative -mt-5">
-                <img 
-                  src={selectedWheelData.imageUrl} 
-                  alt={selectedWheelData.name}
-                  className={`${imageSize} object-contain transition-all duration-300 hover:drop-shadow-xl`}
-                />
-              </div>
-            )}
-          </div>
-          
-          {!selectedBootData && !selectedFrameData && !selectedWheelData && (
-            <p className="text-gray-500 animate-pulse">Select items to preview</p>
-          )}
-        </div>
+        <PreviewDisplay
+          selectedBootData={selectedBootData}
+          selectedFrameData={selectedFrameData}
+          selectedWheelData={selectedWheelData}
+          imageSize={imageSize}
+          spacing={spacing}
+        />
 
         {selectedBootData && selectedFrameData && (
           <div className="w-full max-w-xs mb-4">
@@ -89,29 +63,11 @@ const Preview: React.FC<PreviewProps> = ({
 
         <Separator className="my-4" />
 
-        <div className="w-full bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 shadow-inner">
-          <h3 className="text-lg font-semibold text-primary mb-2 text-center">Your Selected Setup</h3>
-          <div className="space-y-2">
-            {selectedBootData && (
-              <div className="flex items-center justify-between px-4 py-1 bg-white/50 dark:bg-gray-700/50 rounded">
-                <span className="font-medium text-gray-600 dark:text-gray-300">Boot:</span>
-                <span className="text-primary">{selectedBootData.name}</span>
-              </div>
-            )}
-            {selectedFrameData && (
-              <div className="flex items-center justify-between px-4 py-1 bg-white/50 dark:bg-gray-700/50 rounded">
-                <span className="font-medium text-gray-600 dark:text-gray-300">Frame:</span>
-                <span className="text-primary">{selectedFrameData.name}</span>
-              </div>
-            )}
-            {selectedWheelData && (
-              <div className="flex items-center justify-between px-4 py-1 bg-white/50 dark:bg-gray-700/50 rounded">
-                <span className="font-medium text-gray-600 dark:text-gray-300">Wheels:</span>
-                <span className="text-primary">{selectedWheelData.name}</span>
-              </div>
-            )}
-          </div>
-        </div>
+        <SelectedSetup
+          selectedBootData={selectedBootData}
+          selectedFrameData={selectedFrameData}
+          selectedWheelData={selectedWheelData}
+        />
       </div>
     </Card>
   );
