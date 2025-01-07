@@ -41,7 +41,9 @@ const Preview: React.FC<PreviewProps> = ({
 
   return (
     <Card 
-      className={`w-full bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-xl p-6 animate-fadeIn overflow-hidden transition-all duration-300 ${!showMenu ? 'lg:w-[150%]' : ''}`} 
+      className={`bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-xl p-6 animate-fadeIn overflow-hidden transition-all duration-300 ${
+        !showMenu ? 'w-[150%] mx-auto transform -translate-x-1/4' : 'w-full'
+      }`} 
       style={{ height: previewHeight }}
     >
       <div className="w-full h-full flex flex-col justify-between">
