@@ -1,7 +1,6 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
-import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { boots } from "@/lib/data/boots";
@@ -19,7 +18,6 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
   onSelectFrame,
   onSelectWheels,
 }) => {
-  const [priceRange, setPriceRange] = React.useState([0, 500]);
   const [selectedBrand, setSelectedBrand] = React.useState<string>("all");
 
   const ProductCard = ({ product }: { product: any }) => (
@@ -35,9 +33,7 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
   );
 
   const filterProducts = (products: any[]) => {
-    return products
-      .filter((p) => p.price >= priceRange[0] && p.price <= priceRange[1])
-      .filter((p) => selectedBrand === "all" || p.brand === selectedBrand);
+    return products.filter((p) => selectedBrand === "all" || p.brand === selectedBrand);
   };
 
   const getBrands = (products: any[]) => {
@@ -70,18 +66,6 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
         </TabsList>
 
         <div className="mb-6 space-y-4">
-          <div>
-            <Label>Price Range Filter</Label>
-            <Slider
-              defaultValue={[0, 500]}
-              max={500}
-              step={10}
-              value={priceRange}
-              onValueChange={setPriceRange}
-              className="mt-2"
-            />
-          </div>
-
           <div>
             <Label>Brand</Label>
             <Select value={selectedBrand} onValueChange={setSelectedBrand}>
