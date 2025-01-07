@@ -34,3 +34,8 @@ export interface WheelOption {
   imageUrl: string;
   colors: Color[];
 }
+
+// Add type aliases for better readability
+export type Boot = SkateOption;
+export type Frame = FrameOption;
+export type Wheel = WheelOption;
