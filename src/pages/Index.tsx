@@ -23,6 +23,9 @@ const Index = () => {
               selectedFrame={selectedFrame}
               selectedWheels={selectedWheels}
               showMenu={showMenu}
+              onSelectBoot={setSelectedBoot}
+              onSelectFrame={setSelectedFrame}
+              onSelectWheels={setSelectedWheels}
             />
             <button
               onClick={() => setShowMenu(!showMenu)}

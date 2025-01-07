@@ -14,6 +14,9 @@ interface PreviewProps {
   selectedFrame: string | null;
   selectedWheels: string | null;
   showMenu: boolean;
+  onSelectBoot?: (boot: string | null) => void;
+  onSelectFrame?: (frame: string | null) => void;
+  onSelectWheels?: (wheels: string | null) => void;
 }
 
 const Preview: React.FC<PreviewProps> = ({
@@ -21,6 +24,9 @@ const Preview: React.FC<PreviewProps> = ({
   selectedFrame,
   selectedWheels,
   showMenu,
+  onSelectBoot,
+  onSelectFrame,
+  onSelectWheels,
 }) => {
   const [spacing, setSpacing] = useState([-20]);
   const selectedBootData = boots.find((boot) => boot.name === selectedBoot);
@@ -29,8 +35,8 @@ const Preview: React.FC<PreviewProps> = ({
 
   const imageSize = showMenu ? "w-48 h-48" : "w-64 h-64";
   const selectedItemsCount = [selectedBoot, selectedFrame, selectedWheels].filter(Boolean).length;
-  const minHeight = 500; // Minimum height to ensure selected setup is visible
-  const itemHeight = 70; // Height per selected item
+  const minHeight = 500;
+  const itemHeight = 70;
   const previewHeight = `${Math.max(minHeight, minHeight + selectedItemsCount * itemHeight)}px`;
 
   return (
@@ -72,6 +78,9 @@ const Preview: React.FC<PreviewProps> = ({
             selectedBootData={selectedBootData}
             selectedFrameData={selectedFrameData}
             selectedWheelData={selectedWheelData}
+            onRemoveBoot={() => onSelectBoot?.(null)}
+            onRemoveFrame={() => onSelectFrame?.(null)}
+            onRemoveWheels={() => onSelectWheels?.(null)}
           />
         </div>
       </div>
