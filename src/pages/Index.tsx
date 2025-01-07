@@ -16,7 +16,7 @@ const Index = () => {
           BladeForge
         </h1>
         
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 relative ${!showMenu ? 'lg:grid-cols-1 lg:max-w-3xl lg:mx-auto' : ''}`}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative">
           <div className="w-full">
             <Preview
               selectedBoot={selectedBoot}
