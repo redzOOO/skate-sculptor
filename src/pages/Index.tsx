@@ -29,7 +29,7 @@ const Index = () => {
             />
             <button
               onClick={() => setShowMenu(!showMenu)}
-              className="absolute top-1/2 -right-3 z-10 p-2 bg-primary hover:bg-primary-hover text-white rounded-full shadow-lg transform -translate-y-1/2 transition-transform hover:scale-110"
+              className="absolute top-1/3 -right-2 z-10 p-2 bg-primary hover:bg-primary-hover text-white rounded-full shadow-lg transform -translate-y-1/2 transition-transform hover:scale-110"
             >
               <ChevronRight className={`w-4 h-4 transition-transform ${showMenu ? '' : 'rotate-180'}`} />
             </button>
