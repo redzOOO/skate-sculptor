@@ -22,11 +22,13 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
 
   const ProductCard = ({ product }: { product: any }) => (
     <Card className="p-4 hover:shadow-lg transition-shadow cursor-pointer">
-      <img
-        src={product.imageUrl}
-        alt={product.name}
-        className="w-full h-40 object-cover mb-4 rounded"
-      />
+      <div className="h-40 flex items-center justify-center mb-4">
+        <img
+          src={product.imageUrl}
+          alt={product.name}
+          className="w-full h-full object-contain"
+        />
+      </div>
       <h3 className="font-bold">{product.name}</h3>
       <p className="text-sm text-gray-500">{product.brand}</p>
     </Card>
