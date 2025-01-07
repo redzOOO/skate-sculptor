@@ -42,7 +42,7 @@ const Preview: React.FC<PreviewProps> = ({
   return (
     <Card 
       className={`bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-xl p-6 animate-fadeIn overflow-hidden transition-all duration-300 ${
-        !showMenu ? 'w-[150%] mx-auto transform -translate-x-1/4' : 'w-full'
+        !showMenu ? 'w-[150%] mx-auto translate-x-[16.67%]' : 'w-full'
       }`} 
       style={{ height: previewHeight }}
     >
