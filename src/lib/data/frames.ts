@@ -80,7 +80,7 @@ export const frames: FrameOption[] = [
     description: "60mm HD Black Complete Setup",
     price: 177.95,
     size: "Universal",
-    imageUrl: "https://res.cloudinary.com/dl2peuqua/image/upload/v1736466252/Ground-Control-60mm-HD-Black-Frames---Loco-GET-SET-WheelFrame-Set_uhofpy.png"
+    imageUrl: "https://res.cloudinary.com/dl2peuqua/image/upload/v1736468166/Ground-Control-60mm-HD-Black-Frames---Loco-GET-SET-WheelFrame-Set_punlrg.png"
   },
   {
     id: "gc-featherlite-3-white",
