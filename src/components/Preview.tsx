@@ -29,6 +29,7 @@ const Preview: React.FC<PreviewProps> = ({
   onSelectWheels,
 }) => {
   const [spacing, setSpacing] = useState([-20]);
+  const [horizontalOffset, setHorizontalOffset] = useState([0]);
   const selectedBootData = boots.find((boot) => boot.name === selectedBoot);
   const selectedFrameData = frames.find((frame) => frame.name === selectedFrame);
   const selectedWheelData = wheels.find((wheel) => wheel.name === selectedWheels);
@@ -56,19 +57,33 @@ const Preview: React.FC<PreviewProps> = ({
             selectedWheelData={selectedWheelData}
             imageSize={imageSize}
             spacing={spacing}
+            horizontalOffset={horizontalOffset}
           />
 
           {selectedBootData && selectedFrameData && (
-            <div className="w-full max-w-xs mb-4">
-              <label className="text-sm text-gray-500 mb-2 block">Adjust Boot-Frame Spacing</label>
-              <Slider
-                value={spacing}
-                onValueChange={setSpacing}
-                min={-150}
-                max={-10}
-                step={1}
-                className="w-full"
-              />
+            <div className="w-full max-w-xs space-y-4 mb-4">
+              <div>
+                <label className="text-sm text-gray-500 mb-2 block">Adjust Boot Horizontal Position</label>
+                <Slider
+                  value={horizontalOffset}
+                  onValueChange={setHorizontalOffset}
+                  min={-50}
+                  max={50}
+                  step={1}
+                  className="w-full"
+                />
+              </div>
+              <div>
+                <label className="text-sm text-gray-500 mb-2 block">Adjust Boot-Frame Spacing</label>
+                <Slider
+                  value={spacing}
+                  onValueChange={setSpacing}
+                  min={-150}
+                  max={-10}
+                  step={1}
+                  className="w-full"
+                />
+              </div>
             </div>
           )}
         </div>
