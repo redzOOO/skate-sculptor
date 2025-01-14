@@ -8,6 +8,8 @@ interface PreviewDisplayProps {
   imageSize: string;
   spacing: number[];
   horizontalOffset: number[];
+  wheelOffsetX: number[];
+  wheelOffsetY: number[];
 }
 
 const PreviewDisplay = ({
@@ -17,9 +19,11 @@ const PreviewDisplay = ({
   imageSize,
   spacing,
   horizontalOffset,
+  wheelOffsetX,
+  wheelOffsetY,
 }: PreviewDisplayProps) => {
   return (
-    <div className="flex-1 flex flex-col items-center justify-center space-y-2 relative min-h-[300px]">
+    <div className="flex-1 flex flex-col items-center justify-center space-y-1 relative min-h-[300px]">
       <div className="relative flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
         {selectedBootData && (
           <div className="relative z-10" style={{ transform: `translateX(${horizontalOffset[0]}px)` }}>
@@ -42,7 +46,12 @@ const PreviewDisplay = ({
         )}
         
         {selectedWheelData && (
-          <div className="relative -mt-5">
+          <div 
+            className="relative -mt-2"
+            style={{ 
+              transform: `translate(${wheelOffsetX[0]}px, ${wheelOffsetY[0]}px)` 
+            }}
+          >
             <img 
               src={selectedWheelData.imageUrl} 
               alt={selectedWheelData.name}
