@@ -45,23 +45,28 @@ const Preview: React.FC<PreviewProps> = ({
       className={`bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-xl p-6 animate-fadeIn overflow-hidden transition-all duration-300 ${
         !showMenu ? 'w-[150%] mx-auto translate-x-[16.67%]' : 'w-full'
       }`} 
-      style={{ height: previewHeight }}
+      style={{ minHeight: previewHeight }}
     >
       <div className="w-full h-full flex flex-col justify-between">
         <PreviewHeader />
         
-        <div className="flex-1 flex flex-col items-center justify-center min-h-[300px]">
-          <PreviewDisplay
-            selectedBootData={selectedBootData}
-            selectedFrameData={selectedFrameData}
-            selectedWheelData={selectedWheelData}
-            imageSize={imageSize}
-            spacing={spacing}
-            horizontalOffset={horizontalOffset}
-          />
+        <div className="flex-1 flex flex-col items-center justify-center relative">
+          <div className="w-full max-w-3xl aspect-square">
+            <PreviewDisplay
+              selectedBootData={selectedBootData}
+              selectedFrameData={selectedFrameData}
+              selectedWheelData={selectedWheelData}
+              imageSize={imageSize}
+              spacing={spacing}
+              horizontalOffset={horizontalOffset}
+            />
+          </div>
+        </div>
 
-          {selectedBootData && selectedFrameData && (
-            <div className="w-full max-w-xs space-y-4 mb-4">
+        {selectedBootData && selectedFrameData && (
+          <div className="w-full max-w-md mx-auto bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 shadow-inner mb-4">
+            <h4 className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-4">Adjustment Controls</h4>
+            <div className="space-y-4">
               <div>
                 <label className="text-sm text-gray-500 mb-2 block">Adjust Boot Horizontal Position</label>
                 <Slider
@@ -85,8 +90,8 @@ const Preview: React.FC<PreviewProps> = ({
                 />
               </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
         <Separator className="my-4" />
 
